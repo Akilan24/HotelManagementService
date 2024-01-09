@@ -74,4 +74,15 @@ public class BookingDetailsServiceImpl implements BookingDetailsService {
 		return isAvailable;
 	}
 
+	@Override
+	public BookingDetails paymentstatuschange(int bookingid) {
+		if (bookingrepo.findById(bookingid).isPresent()) {
+			BookingDetails bd = bookingrepo.findById(bookingid).get();
+			bd.setPaymentStatus("Payment done");
+			return bookingrepo.save(bd);
+		} else
+			throw new BookingDetailsNotFoundException("Booking details are not found");
+	
+	}
+
 }

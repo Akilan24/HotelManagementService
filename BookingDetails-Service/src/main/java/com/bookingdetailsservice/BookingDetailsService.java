@@ -15,5 +15,6 @@ public interface BookingDetailsService {
 	public String removeBookingDetails(int bookingid);
 	public List<BookingDetails> showAllBookingDetails();
 	public BookingDetails showBookingDetails(int bookingid);
+	public BookingDetails paymentstatuschange(int bookingid);
 	public boolean checkAvailability(int roomid, int hotelid,Date fromDate,Date ToDate);
 }

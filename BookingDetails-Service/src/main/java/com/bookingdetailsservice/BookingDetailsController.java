@@ -34,6 +34,10 @@ public class BookingDetailsController {
 	public ResponseEntity<?> getBookingDetails(@PathVariable Integer booking_id) {
 		return new ResponseEntity<>(service.showBookingDetails(booking_id), HttpStatus.OK);
 	}
+	@GetMapping("/paymentstatuschangebybid/{bookingid}")
+	public ResponseEntity<?> paymentstatuschange(@PathVariable Integer booking_id) {
+		return new ResponseEntity<>(service.paymentstatuschange(booking_id), HttpStatus.OK);
+	}
 	@PutMapping("/bookroom/{userid}")
 	public ResponseEntity<?> bookroom(@PathVariable String user_id,@RequestBody BookingDetails bd) {
 		return new ResponseEntity<>(service.BookRoom(user_id,bd), HttpStatus.OK);

@@ -9,4 +9,7 @@ public interface BookingDetailsProxy {
 
 	@GetMapping("/getbyid/{bookingid}")
 	public BookingDetails getBookingDetails(@PathVariable Integer booking_id);
+	
+	@GetMapping("/paymentstatuschangebybid/{bookingid}")
+	public BookingDetails paymentstatuschange(@PathVariable Integer booking_id);
 }

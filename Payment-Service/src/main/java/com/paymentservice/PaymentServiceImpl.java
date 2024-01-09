@@ -36,6 +36,7 @@ public class PaymentServiceImpl implements PaymentService {
         p.setUser_id(bd.getUserid());
         p.setAmount(bd.getAmount());
         p.setPaymentStatus("Payment Done");
+        bdproxy.paymentstatuschange(bookingid);
         return paymentRepository.save(p);
 	}
 
