@@ -2,6 +2,9 @@ package com.mailservice;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public interface MailService {
 
 	
