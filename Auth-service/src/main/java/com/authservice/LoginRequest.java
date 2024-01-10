@@ -1,4 +1,4 @@
-package com.apigateway;
+package com.authservice;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

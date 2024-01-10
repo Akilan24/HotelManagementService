@@ -1,4 +1,4 @@
-package com.apigateway;
+package com.authservice;
 
 import java.io.Serializable; 
 import java.util.Date;

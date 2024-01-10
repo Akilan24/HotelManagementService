@@ -1,4 +1,4 @@
-package com.apigateway;
+package com.authservice;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

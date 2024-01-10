@@ -1,4 +1,4 @@
-package com.apigateway;
+package com.authservice;
 
 import java.util.Collection;
 import java.util.List;
