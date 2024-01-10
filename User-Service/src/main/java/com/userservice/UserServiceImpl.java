@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> ShowAllUser() {
-		List<User> list = (List<User>) userrepo.findAll();
+		List<User> list = userrepo.findAll();
 		if (list.isEmpty()) {
 			throw new UserNotFoundException("User details are not found");
 		}
