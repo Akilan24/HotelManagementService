@@ -25,7 +25,7 @@ public interface UserProxy {
 	@PutMapping("/User/updateuser/{user_id}")
 	public User updateUser(@PathVariable("user_id") String userId, @RequestBody @Valid User user);
 
-	@PutMapping("/updateuser/{user_id}/{password}")
+	@PutMapping("/updatepassword/{user_id}/{password}")
 	public String updateuser(@PathVariable String user_id, @PathVariable @Valid String password);
 
 	@GetMapping("/User/getuserbyid/{user_id}")

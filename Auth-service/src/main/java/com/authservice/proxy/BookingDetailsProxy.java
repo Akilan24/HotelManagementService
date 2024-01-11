@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.authservice.externalentity.BookingDetails;
 
-@FeignClient(name = "bookingdetails-service", url = "http://localhost:8081/Bookingdetails")
+@FeignClient(name = "bookingdetails-service", url = "http://localhost:8084/Bookingdetails")
 public interface BookingDetailsProxy {
 
 	@GetMapping("/Bookingdetails/getall")

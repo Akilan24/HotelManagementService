@@ -12,17 +12,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.authservice.jwt.EntryPointJwt;
+import com.authservice.jwt.TokenFilter;
+import com.authservice.service.UserDetailsServiceImpl;
+
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-	
+
 	@Autowired
 	TokenFilter tokenFilter;
 	@Autowired
 	EntryPointJwt entryPoint;
 	@Autowired
 	UserDetailsServiceImpl userDetailsService;
-	
+
 	@Bean
 	public DaoAuthenticationProvider authenticate() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -30,28 +34,19 @@ public class SecurityConfig {
 		provider.setPasswordEncoder(passwordEncoder());
 		return provider;
 	}
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		// TODO Auto-generated method stub
 		return new BCryptPasswordEncoder();
 	}
-	
-	
+
 	@Bean
-	public SecurityFilterChain doFilter (HttpSecurity http)throws Exception{
-		return http
-				.csrf().disable()
-				.exceptionHandling()
-				.authenticationEntryPoint(entryPoint)
-				.and()
-				.authorizeHttpRequests()
-				.requestMatchers("/User/adduser").permitAll()
-				.requestMatchers("/User/signin").permitAll()
-				.requestMatchers("/User/**").authenticated()
-				.and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and()
-				.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class)
-				.build();
+	public SecurityFilterChain doFilter(HttpSecurity http) throws Exception {
+		return http.csrf().disable().exceptionHandling().authenticationEntryPoint(entryPoint).and()
+				.authorizeHttpRequests().requestMatchers("/Main/User/adduser").permitAll().requestMatchers("Main/User/signin")
+				.permitAll().requestMatchers("Main/User/**").authenticated().and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+				.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class).build();
 	}
 }
