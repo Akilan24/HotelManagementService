@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,12 +11,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userrepo;
-	@Autowired
-	private PasswordEncoder bcrytp;
 
 	@Override
 	public String addUser(User user) {
-		user.setPassword(bcrytp.encode(user.getPassword()));
 		userrepo.save(user);
 		return "User details are added";
 
@@ -104,7 +100,6 @@ public class UserServiceImpl implements UserService {
 		
 		if (userrepo.findById(user_id).isPresent()) {
 			User u = userrepo.findById(user_id).get();
-			u.setPassword(bcrytp.encode(password));
 			userrepo.save(u);
 			return "User password updated";
 		} else

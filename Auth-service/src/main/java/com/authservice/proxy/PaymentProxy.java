@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.authservice.externalentity.Payment;
 
-@FeignClient(name = "payment-service", url = "http://localhost:8085/Payment")
+@FeignClient(name = "payment-service", url = "http://localhost:8085/")
 public interface PaymentProxy {
 
 	@PostMapping("/Payment/doPayment/{bookingid}")

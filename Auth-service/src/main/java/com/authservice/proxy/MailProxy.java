@@ -12,7 +12,7 @@ import com.authservice.externalentity.Mail;
 
 import jakarta.validation.Valid;
 
-@FeignClient(name = "mail-service", url = "http://localhost:8086/Mail")
+@FeignClient(name = "mail-service", url = "http://localhost:8086/")
 public interface MailProxy {
 
 	@PostMapping("/Mail/adduser")

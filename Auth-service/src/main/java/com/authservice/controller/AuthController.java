@@ -24,7 +24,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/Main/User")
 @AllArgsConstructor
 public class AuthController {
 

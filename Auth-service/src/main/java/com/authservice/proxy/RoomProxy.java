@@ -14,7 +14,7 @@ import com.authservice.externalentity.Room;
 
 import jakarta.validation.Valid;
 
-@FeignClient(name = "room-service", url = "http://localhost:8083/Room")
+@FeignClient(name = "room-service", url = "http://localhost:8083/")
 public interface RoomProxy {
 
 	@PostMapping("/Room/add")

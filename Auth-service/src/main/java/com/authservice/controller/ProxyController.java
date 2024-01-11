@@ -1,10 +1,10 @@
-package com.authservice.service;
+package com.authservice.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,13 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.authservice.externalentity.BookingDetails;
 import com.authservice.externalentity.Hotel;
 import com.authservice.externalentity.Mail;
 import com.authservice.externalentity.Payment;
 import com.authservice.externalentity.Room;
 import com.authservice.externalentity.User;
-import com.authservice.proxy.BookingDetailsProxy;
 import com.authservice.proxy.HotelProxy;
 import com.authservice.proxy.MailProxy;
 import com.authservice.proxy.PaymentProxy;
@@ -27,7 +25,7 @@ import com.authservice.proxy.UserProxy;
 
 @RestController
 @RequestMapping("/Main")
-public class ProxyController{
+public class ProxyController {
 
 	@Autowired
 	private UserProxy userProxy;
@@ -39,27 +37,34 @@ public class ProxyController{
 	private PaymentProxy paymentProxy;
 	@Autowired
 	private MailProxy mailProxy;
-	@Autowired
-	private BookingDetailsProxy bookingDetailsProxy;
 
+	@Autowired
+	private PasswordEncoder bcrytp;
+
+	@GetMapping("/U")
+	public String User() {
+		return "asd";
+	}
 	@GetMapping("/User/getallusers")
-	public List<User> listUser() {
+	public ResponseEntity<List<User>> listUser() {
 		return userProxy.listUser();
 	}
 
 	@PostMapping("/User/adduser")
 	public String addUser(User user) {
+		user.setPassword(bcrytp.encode(user.getPassword()));
 		return userProxy.addUser(user);
 	}
 
 	@PutMapping("/User/updateuser/{user_id}")
-	public User updateUser(String userId, User user) {
-		return userProxy.updateUser(userId, user);
+	public User updateUser(String user_id, User user) {
+		return userProxy.updateUser(user_id, user);
 	}
 
 	@PutMapping("/updatepassword/{user_id}/{password}")
-	public User showUser(String userId) {
-		return userProxy.showUser(userId);
+	public String updatepassword(String user_id, String password) {
+		password = bcrytp.encode(password);
+		return userProxy.updatepassword(user_id, password);
 	}
 
 	@GetMapping("/User/getuserbyid/{user_id}")
@@ -197,33 +202,4 @@ public class ProxyController{
 		return mailProxy.getbymailid(mailid);
 	}
 
-	@GetMapping("/Bookingdetails/getall")
-	public ResponseEntity<List<BookingDetails>> listBookingDetails() {
-		return bookingDetailsProxy.listBookingDetails();
-	}
-
-	@GetMapping("/Bookingdetails/checkifavail/{roomid}/{hotelid}/{fromDate}/{toDate}")
-	public ResponseEntity<Boolean> checkRoomAvailability(int roomid, int hotelid, Date fromDate, Date toDate) {
-		return bookingDetailsProxy.checkRoomAvailability(roomid, hotelid, fromDate, toDate);
-	}
-
-	@GetMapping("/Bookingdetails/getbyid/{bookingid}")
-	public ResponseEntity<BookingDetails> getBookingDetails(Integer booking_id) {
-		return bookingDetailsProxy.getBookingDetails(booking_id);
-	}
-
-	@GetMapping("/Bookingdetails/paymentstatuschangebybid/{bookingid}")
-	public ResponseEntity<BookingDetails> paymentstatuschange(Integer booking_id) {
-		return bookingDetailsProxy.paymentstatuschange(booking_id);
-	}
-
-	@PutMapping("/Bookingdetails/bookroom/{userid}")
-	public ResponseEntity<BookingDetails> bookroom(String user_id, BookingDetails bd) {
-		return bookingDetailsProxy.bookroom(user_id, bd);
-	}
-
-	@DeleteMapping("/Bookingdetails/deletebyid/{bookingid}")
-	public ResponseEntity<String> remove(Integer booking_id) {
-		return bookingDetailsProxy.remove(booking_id);
-	}
 }

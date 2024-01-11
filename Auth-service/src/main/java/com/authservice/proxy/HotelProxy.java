@@ -14,7 +14,7 @@ import com.authservice.externalentity.Hotel;
 
 import jakarta.validation.Valid;
 
-@FeignClient(name = "hotel-service", url = "http://localhost:8082/Hotel")
+@FeignClient(name = "hotel-service", url = "http://localhost:8082/")
 public interface HotelProxy {
 	@GetMapping("/Hotel/getallhotel")
 	public List<Hotel> getHotels();

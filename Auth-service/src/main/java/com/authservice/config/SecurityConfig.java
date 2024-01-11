@@ -17,7 +17,6 @@ import com.authservice.jwt.TokenFilter;
 import com.authservice.service.UserDetailsServiceImpl;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
 	@Autowired
@@ -43,10 +42,17 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain doFilter(HttpSecurity http) throws Exception {
-		return http.csrf().disable().exceptionHandling().authenticationEntryPoint(entryPoint).and()
-				.authorizeHttpRequests().requestMatchers("/Main/User/adduser").permitAll().requestMatchers("Main/User/signin")
-				.permitAll().requestMatchers("Main/User/**").authenticated().and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-				.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class).build();
+		return http.csrf().disable()
+				.exceptionHandling()
+				.authenticationEntryPoint(entryPoint)
+				.and()
+				.authorizeHttpRequests()
+				.requestMatchers("/Main/**").permitAll()
+				.requestMatchers("/registration/authorization/**").authenticated()
+				.and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.and()
+				.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class)
+				.build();
 	}
 }

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,7 @@ public class BookingDetailsController {
 	public ResponseEntity<BookingDetails> getBookingDetails(@PathVariable Integer booking_id) {
 		return new ResponseEntity<>(service.showBookingDetailsbyId(booking_id), HttpStatus.OK);
 	}
-	@GetMapping("/paymentstatuschangebybid/{bookingid}")
+	@PostMapping("/paymentstatuschangebybid/{bookingid}")
 	public ResponseEntity<BookingDetails> paymentstatuschange(@PathVariable Integer booking_id) {
 		return new ResponseEntity<>(service.paymentstatuschange(booking_id), HttpStatus.OK);
 	}
