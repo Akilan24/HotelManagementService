@@ -35,6 +35,5 @@ public class Hotel {
 	private String mobile2;
 	@Pattern(regexp = "^(https?://)?(www\\.)?[a-zA-Z0-9-]+\\.[a-zA-Z]{2,}(\\.[a-zA-Z]{2,})?$", message = "Please provide a valid website")
 	private String website;
-	
 
 }

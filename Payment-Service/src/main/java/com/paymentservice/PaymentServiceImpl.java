@@ -20,8 +20,8 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public Payment doPayment(int bookingid) {
-		BookingDetails bd=bdproxy.getBookingDetails(bookingid);
-		
+		BookingDetails bd = bdproxy.getBookingDetails(bookingid);
+
 		Payment p = new Payment();
 
 		int MIN_ID = 100000;
@@ -33,11 +33,11 @@ public class PaymentServiceImpl implements PaymentService {
 
 		p.setBookingid(bookingid);
 		p.setPaymentDate(DateNow());
-        p.setUser_id(bd.getUserid());
-        p.setAmount(bd.getAmount());
-        p.setPaymentStatus("Payment Done");
-        bdproxy.paymentstatuschange(bookingid);
-        return paymentRepository.save(p);
+		p.setUser_id(bd.getUserid());
+		p.setAmount(bd.getAmount());
+		p.setPaymentStatus("Payment Done");
+		bdproxy.paymentstatuschange(bookingid);
+		return paymentRepository.save(p);
 	}
 
 	@Override

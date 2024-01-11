@@ -82,7 +82,7 @@ public class BookingDetailsServiceImpl implements BookingDetailsService {
 			return bookingrepo.save(bd);
 		} else
 			throw new BookingDetailsNotFoundException("Booking details are not found");
-	
+
 	}
 
 }

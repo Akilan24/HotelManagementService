@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import com.authservice.externalentity.Mail;
 import jakarta.validation.Valid;
 
 @FeignClient(name = "mail-service", url = "http://localhost:8086/")
+@Service
 public interface MailProxy {
 
 	@PostMapping("/Mail/adduser")

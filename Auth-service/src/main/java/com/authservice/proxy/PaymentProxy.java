@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.authservice.externalentity.Payment;
 
 @FeignClient(name = "payment-service", url = "http://localhost:8085/")
+@Service
 public interface PaymentProxy {
 
 	@PostMapping("/Payment/doPayment/{bookingid}")

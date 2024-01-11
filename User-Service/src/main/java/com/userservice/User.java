@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class User {
 
 	@Id
-	@Pattern(regexp = "^(?=.*\\d)[a-zA-Z0-9]{6}$", message = "User ID should be alphanumeric and 6-12 characters long")
+	@Pattern(regexp = "^(?=.*\\d)[a-zA-Z0-9]{6}$", message = "User ID should be alphanumeric and 6 characters long")
 	private String user_id;
 	@NotBlank(message = "Please provide a UserName")
 	private String userName;
@@ -28,7 +28,7 @@ public class User {
 	private String password;
 	@Pattern(regexp = "^(user|admin|hadmin)$", message = "Please provide a valid role")
 	private String roles;
-	@Pattern(regexp = "^[6-9]\\\\d{9}$", message = "Mobile number must start with 6, 7, 8, or 9 and have a maximum of 10 digits")
+	@Pattern(regexp = "^[6-9]\\d{9}$", message = "Mobile number must start with 6, 7, 8, or 9 and have a maximum of 10 digits")
 	private String mobile;
 	@NotBlank(message = "Please provide a Address")
 	private String address;

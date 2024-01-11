@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String updateUserpasswordbyId(String user_id, String password) {
-		
+
 		if (userrepo.findById(user_id).isPresent()) {
 			User u = userrepo.findById(user_id).get();
 			userrepo.save(u);

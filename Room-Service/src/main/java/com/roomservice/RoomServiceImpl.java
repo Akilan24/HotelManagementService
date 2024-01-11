@@ -70,8 +70,7 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public List<Room> showRoomDetailBytype(String type) {
-		List<Room> r = rrepo.findAll().stream().filter(a -> a.getRoomtype().equals(type))
-				.collect(Collectors.toList());
+		List<Room> r = rrepo.findAll().stream().filter(a -> a.getRoomtype().equals(type)).collect(Collectors.toList());
 		if (!r.isEmpty()) {
 			return r;
 		} else

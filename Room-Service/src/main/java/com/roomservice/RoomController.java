@@ -61,7 +61,7 @@ public class RoomController {
 
 	@GetMapping("/getbyroomtype/{type}")
 	public ResponseEntity<List<Room>> getroombytype(@PathVariable String type) {
-		return new ResponseEntity<>(rservice.showRoomDetailBytype(type),HttpStatus.OK);
+		return new ResponseEntity<>(rservice.showRoomDetailBytype(type), HttpStatus.OK);
 	}
 
 }

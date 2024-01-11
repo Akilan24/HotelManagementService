@@ -21,7 +21,7 @@ public class Room {
 	@NotNull
 	private Double rate_per_day;
 	@NotBlank
-    private String roomtype;
+	private String roomtype;
 	private long hotelId;
 
 }

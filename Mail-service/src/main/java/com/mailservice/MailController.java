@@ -25,10 +25,12 @@ public class MailController {
 	public ResponseEntity<String> sendMail(@RequestBody Mail mail) {
 		return new ResponseEntity<>(mailservice.sendMail(mail), HttpStatus.OK);
 	}
+
 	@GetMapping("/getallmail")
 	public ResponseEntity<List<Mail>> getallMail() {
 		return new ResponseEntity<>(mailservice.getallMail(), HttpStatus.OK);
 	}
+
 	@GetMapping("/getbymailid/{mailid}")
 	public ResponseEntity<Mail> getbymailid(@PathVariable @Valid String mailid) {
 		return new ResponseEntity<>(mailservice.getbymailid(mailid), HttpStatus.OK);

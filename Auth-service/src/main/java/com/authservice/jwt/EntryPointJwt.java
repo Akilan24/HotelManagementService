@@ -13,9 +13,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-public class EntryPointJwt implements AuthenticationEntryPoint{
+public class EntryPointJwt implements AuthenticationEntryPoint {
 
-	private static final Logger log= LoggerFactory.getLogger(EntryPointJwt.class);
+	private static final Logger log = LoggerFactory.getLogger(EntryPointJwt.class);
+
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException authException) throws IOException, ServletException {

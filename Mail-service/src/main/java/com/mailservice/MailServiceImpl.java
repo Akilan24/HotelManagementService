@@ -36,7 +36,7 @@ public class MailServiceImpl implements MailService {
 		message.setText(m.getBody());
 		message.setSubject(m.getSubject());
 		mailSender.send(message);
-		
+
 	}
 
 	@Override
