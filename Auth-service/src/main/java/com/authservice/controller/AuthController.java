@@ -1,4 +1,4 @@
-package com.authservice;
+package com.authservice.controller;
 
 import java.util.Collection;
 import java.util.List;

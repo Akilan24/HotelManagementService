@@ -51,7 +51,7 @@ public class BookingDetailsServiceImpl implements BookingDetailsService {
 	}
 
 	@Override
-	public BookingDetails showBookingDetails(int booking_id) {
+	public BookingDetails showBookingDetailsbyId(int booking_id) {
 		if (bookingrepo.findById(booking_id).isPresent()) {
 			BookingDetails bd = bookingrepo.findById(booking_id).get();
 			return bd;

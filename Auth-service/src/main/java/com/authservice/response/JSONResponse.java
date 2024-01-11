@@ -1,4 +1,4 @@
-package com.authservice;
+package com.authservice.response;
 
 import java.util.List;
 

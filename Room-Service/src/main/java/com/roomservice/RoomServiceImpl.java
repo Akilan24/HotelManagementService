@@ -50,7 +50,7 @@ public class RoomServiceImpl implements RoomService {
 
 	}
 
-	public Room showRoomDetails(Integer id) {
+	public Room showRoomDetailsbyId(Integer id) {
 		if (rrepo.findById(id).isPresent()) {
 			Room r = rrepo.findById(id).get();
 			return r;

@@ -1,4 +1,4 @@
-package com.authservice;
+package com.authservice.jwt;
 
 import java.io.IOException;
 

@@ -1,6 +1,7 @@
 package com.bookingdetailsservice;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,29 +22,29 @@ public class BookingDetailsController {
 	BookingDetailsService service;
 
 	@GetMapping("/getall")
-	public ResponseEntity<?> listBookingDetails() {
+	public ResponseEntity<List<BookingDetails>> listBookingDetails() {
 		return new ResponseEntity<>(service.showAllBookingDetails(), HttpStatus.OK);
 	}
 
 	@GetMapping("/checkifavail/{roomid}/{hotelid}/{fromDate}/{ToDate}")
-	public ResponseEntity<?> checkRoomAvailability(@PathVariable int roomid,@PathVariable int hotelid,@PathVariable Date fromDate, @PathVariable Date ToDate) {
+	public ResponseEntity<Boolean> checkRoomAvailability(@PathVariable int roomid,@PathVariable int hotelid,@PathVariable Date fromDate, @PathVariable Date ToDate) {
 		return new ResponseEntity<>(service.checkAvailability(roomid,hotelid,fromDate, ToDate), HttpStatus.OK);
 	}
 
 	@GetMapping("/getbyid/{bookingid}")
-	public ResponseEntity<?> getBookingDetails(@PathVariable Integer booking_id) {
-		return new ResponseEntity<>(service.showBookingDetails(booking_id), HttpStatus.OK);
+	public ResponseEntity<BookingDetails> getBookingDetails(@PathVariable Integer booking_id) {
+		return new ResponseEntity<>(service.showBookingDetailsbyId(booking_id), HttpStatus.OK);
 	}
 	@GetMapping("/paymentstatuschangebybid/{bookingid}")
-	public ResponseEntity<?> paymentstatuschange(@PathVariable Integer booking_id) {
+	public ResponseEntity<BookingDetails> paymentstatuschange(@PathVariable Integer booking_id) {
 		return new ResponseEntity<>(service.paymentstatuschange(booking_id), HttpStatus.OK);
 	}
 	@PutMapping("/bookroom/{userid}")
-	public ResponseEntity<?> bookroom(@PathVariable String user_id,@RequestBody BookingDetails bd) {
+	public ResponseEntity<BookingDetails> bookroom(@PathVariable String user_id,@RequestBody BookingDetails bd) {
 		return new ResponseEntity<>(service.BookRoom(user_id,bd), HttpStatus.OK);
 	}
 	@DeleteMapping("/deletebyid/{bookingid}")
-	public ResponseEntity<?> remove(@PathVariable Integer booking_id) {
+	public ResponseEntity<String> remove(@PathVariable Integer booking_id) {
 		return new ResponseEntity<>(service.removeBookingDetails(booking_id), HttpStatus.OK);
 	}
 }

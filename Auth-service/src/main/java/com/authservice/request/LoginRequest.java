@@ -1,4 +1,4 @@
-package com.authservice;
+package com.authservice.request;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

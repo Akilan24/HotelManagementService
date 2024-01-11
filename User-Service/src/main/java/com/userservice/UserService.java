@@ -23,4 +23,6 @@ public interface UserService {
 
 	public User updateUser(String user_id, User user);
 
+	public String updateUserpasswordbyId(String user_id, String password);
+
 }

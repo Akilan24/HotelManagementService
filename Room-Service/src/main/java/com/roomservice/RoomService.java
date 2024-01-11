@@ -17,7 +17,7 @@ public interface RoomService {
 
 	public List<Room> showAllRoomDetailsByHotelId(int hid);
 
-	public Room showRoomDetails(Integer id);
+	public Room showRoomDetailsbyId(Integer id);
 
 	public List<Room> showRoomDetailBytype(String type);
 
