@@ -3,6 +3,7 @@ package com.authservice.proxy;
 import java.util.List;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,26 +19,26 @@ import jakarta.validation.Valid;
 public interface RoomProxy {
 
 	@PostMapping("/Room/add")
-	public String addroom(@RequestBody @Valid Room room) throws Exception;
+	public ResponseEntity<String> addroom(@RequestBody @Valid Room room) throws Exception;
 
 	@PutMapping("/Room/update")
-	public String updateroom(@RequestBody @Valid Room room);
+	public ResponseEntity<String> updateroom(@RequestBody @Valid Room room);
 
 	@DeleteMapping("/Room/deletebyid/{id}")
-	public String deleteroom(@PathVariable Integer id);
+	public ResponseEntity<String> deleteroom(@PathVariable Integer id);
 
 	@GetMapping("/Room/getall")
-	public List<Room> getall();
+	public ResponseEntity<List<Room>> getall();
 
 	@GetMapping("/Room/getbyid/{id}")
-	public Room getroom(@PathVariable Integer id);
+	public ResponseEntity<Room> getroom(@PathVariable Integer id);
 
 	@GetMapping("/Room/getbyhotelid/{hid}")
-	public List<Room> getroombyhid(@PathVariable Integer hid);
+	public ResponseEntity<List<Room>> getroombyhid(@PathVariable Integer hid);
 
 	@GetMapping("/Room/getbyprice/{price}")
-	public List<Room> getroom(@PathVariable Double price);
+	public ResponseEntity<List<Room>> getroom(@PathVariable Double price);
 
 	@GetMapping("/Room/getbyroomtype/{type}")
-	public List<Room> getroombytype(@PathVariable String type);
+	public ResponseEntity<List<Room>> getroombytype(@PathVariable String type);
 }

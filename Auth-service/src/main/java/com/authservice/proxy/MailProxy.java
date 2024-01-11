@@ -3,6 +3,7 @@ package com.authservice.proxy;
 import java.util.List;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,11 +17,11 @@ import jakarta.validation.Valid;
 public interface MailProxy {
 
 	@PostMapping("/Mail/adduser")
-	public String sendMail(@RequestBody @Valid Mail mail);
+	public ResponseEntity<String> sendMail(@RequestBody @Valid Mail mail);
 
 	@GetMapping("/Mail/getallmail")
-	public List<Mail> getallMail();
+	public ResponseEntity<List<Mail>> getallMail();
 
 	@GetMapping("/Mail/getbymailid/{mailid}")
-	public Mail getbymailid(@PathVariable @Valid String mailid);
+	public ResponseEntity<Mail> getbymailid(@PathVariable @Valid String mailid);
 }

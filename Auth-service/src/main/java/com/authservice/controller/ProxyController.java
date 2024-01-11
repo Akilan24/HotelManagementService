@@ -45,24 +45,25 @@ public class ProxyController {
 	public String User() {
 		return "asd";
 	}
+
 	@GetMapping("/User/getallusers")
 	public ResponseEntity<List<User>> listUser() {
 		return userProxy.listUser();
 	}
 
 	@PostMapping("/User/adduser")
-	public String addUser(User user) {
+	public ResponseEntity<String> addUser(User user) {
 		user.setPassword(bcrytp.encode(user.getPassword()));
 		return userProxy.addUser(user);
 	}
 
 	@PutMapping("/User/updateuser/{user_id}")
-	public User updateUser(String user_id, User user) {
+	public ResponseEntity<com.authservice.externalentity.User> updateUser(String user_id, User user) {
 		return userProxy.updateUser(user_id, user);
 	}
 
 	@PutMapping("/updatepassword/{user_id}/{password}")
-	public String updatepassword(String user_id, String password) {
+	public ResponseEntity<String> updatepassword(String user_id, String password) {
 		password = bcrytp.encode(password);
 		return userProxy.updatepassword(user_id, password);
 	}
@@ -73,132 +74,132 @@ public class ProxyController {
 	}
 
 	@GetMapping("/User/getuserbyemail/{email}")
-	public User showUserByEmail(String email) {
+	public ResponseEntity<com.authservice.externalentity.User> showUserByEmail(String email) {
 		return userProxy.showUserByEmail(email);
 	}
 
 	@GetMapping("/User/getuserbymobile/{mobile}")
-	public User showUserByMobileNumber(String mobile) {
+	public ResponseEntity<com.authservice.externalentity.User> showUserByMobileNumber(String mobile) {
 		return userProxy.showUserByMobileNumber(mobile);
 	}
 
 	@GetMapping("/User/deleteuserbyid/{user_id}")
-	public String remove(String userId) {
+	public ResponseEntity<String> remove(String userId) {
 		return userProxy.remove(userId);
 	}
 
 	@GetMapping("/Hotel/getallhotel")
-	public List<Hotel> getHotels() {
+	public ResponseEntity<List<Hotel>> getHotels() {
 		return hotelProxy.getHotels();
 	}
 
 	@GetMapping("/Hotel/gethotelbyid/{id}")
-	public Hotel gethotelbyid(long id) {
+	public ResponseEntity<Hotel> gethotelbyid(long id) {
 		return hotelProxy.gethotelbyid(id);
 	}
 
 	@GetMapping("/Hotel/gethotelbyhotelname/{hotelname}")
-	public Hotel gethotelbyhotelname(String hotelname) {
+	public ResponseEntity<Hotel> gethotelbyhotelname(String hotelname) {
 		return hotelProxy.gethotelbyhotelname(hotelname);
 	}
 
 	@GetMapping("/Hotel/gethotelbycityname/{cityname}")
-	public List<Hotel> gethotelbycityname(String cityname) {
+	public ResponseEntity<List<Hotel>> gethotelbycityname(String cityname) {
 		return hotelProxy.gethotelbycityname(cityname);
 	}
 
 	@PostMapping("/Hotel/addhotel")
-	public Hotel addhotel(Hotel htl) throws Exception {
+	public ResponseEntity<Hotel> addhotel(Hotel htl) throws Exception {
 		return hotelProxy.addhotel(htl);
 	}
 
 	@PutMapping("/Hotel/updatehotel")
-	public Hotel updatehotel(Hotel ht) {
+	public ResponseEntity<Hotel> updatehotel(Hotel ht) {
 		return hotelProxy.updatehotel(ht);
 	}
 
 	@DeleteMapping("/Hotel/deletebyid/{id}")
-	public String deletehotel(long id) {
+	public ResponseEntity<String> deletehotel(long id) {
 		return hotelProxy.deletehotel(id);
 	}
 
 	@PostMapping("/Room/add")
-	public String addroom(Room room) throws Exception {
+	public ResponseEntity<String> addroom(Room room) throws Exception {
 		return roomProxy.addroom(room);
 	}
 
 	@PutMapping("/Room/update")
-	public String updateroom(Room room) {
+	public ResponseEntity<String> updateroom(Room room) {
 		return roomProxy.updateroom(room);
 	}
 
 	@DeleteMapping("/Room/deletebyid/{id}")
-	public String deleteroom(Integer id) {
+	public ResponseEntity<String> deleteroom(Integer id) {
 		return roomProxy.deleteroom(id);
 	}
 
 	@GetMapping("/Room/getall")
-	public List<Room> getall() {
+	public ResponseEntity<List<Room>> getall() {
 		return roomProxy.getall();
 	}
 
 	@GetMapping("/Room/getbyid/{id}")
-	public Room getroom(Integer id) {
+	public ResponseEntity<Room> getroom(Integer id) {
 		return roomProxy.getroom(id);
 	}
 
 	@GetMapping("/Room/getbyhotelid/{hid}")
-	public List<Room> getroombyhid(Integer hid) {
+	public ResponseEntity<List<Room>> getroombyhid(Integer hid) {
 		return roomProxy.getroombyhid(hid);
 	}
 
 	@GetMapping("/Room/getbyprice/{price}")
-	public List<Room> getroom(Double price) {
+	public ResponseEntity<List<Room>> getroom(Double price) {
 		return roomProxy.getroom(price);
 	}
 
 	@GetMapping("/Room/getbyroomtype/{type}")
-	public List<Room> getroombytype(String type) {
+	public ResponseEntity<List<Room>> getroombytype(String type) {
 		return roomProxy.getroombytype(type);
 	}
 
 	@PostMapping("/Payment/doPayment/{bookingid}")
-	public Payment addPayment(int bookingid) throws Exception {
+	public ResponseEntity<Payment> addPayment(int bookingid) throws Exception {
 		return paymentProxy.addPayment(bookingid);
 	}
 
 	@GetMapping("/Payment/getallpayment")
-	public List<Payment> getallpayments() {
+	public ResponseEntity<List<Payment>> getallpayments() {
 		return paymentProxy.getallpayments();
 	}
 
 	@GetMapping("/Payment/getpaymentbybookingid/{bookingid}")
-	public Payment getpaymentbybookingid(int bookingid) {
+	public ResponseEntity<Payment> getpaymentbybookingid(int bookingid) {
 		return paymentProxy.getpaymentbybookingid(bookingid);
 	}
 
 	@GetMapping("/Payment/getpaymentbypaymentid/{paymentid}")
-	public Payment getpaymentbypaymentid(long paymentid) {
+	public ResponseEntity<Payment> getpaymentbypaymentid(long paymentid) {
 		return paymentProxy.getpaymentbypaymentid(paymentid);
 	}
 
 	@GetMapping("/Payment/paymentCancel/{paymentid}")
-	public String paymentCancel(long paymentid) {
+	public ResponseEntity<String> paymentCancel(long paymentid) {
 		return paymentProxy.paymentCancel(paymentid);
 	}
 
 	@PostMapping("/Mail/adduser")
-	public String sendMail(Mail mail) {
+	public ResponseEntity<String> sendMail(Mail mail) {
 		return mailProxy.sendMail(mail);
 	}
 
 	@GetMapping("/Mail/getallmail")
-	public List<Mail> getallMail() {
+	public ResponseEntity<List<Mail>> getallMail() {
 		return mailProxy.getallMail();
 	}
 
 	@GetMapping("/Mail/getbymailid/{mailid}")
-	public Mail getbymailid(String mailid) {
+	public ResponseEntity<Mail> getbymailid(String mailid) {
 		return mailProxy.getbymailid(mailid);
 	}
 

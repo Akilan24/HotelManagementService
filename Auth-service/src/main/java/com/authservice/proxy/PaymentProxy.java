@@ -3,6 +3,7 @@ package com.authservice.proxy;
 import java.util.List;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,17 +14,17 @@ import com.authservice.externalentity.Payment;
 public interface PaymentProxy {
 
 	@PostMapping("/Payment/doPayment/{bookingid}")
-	public Payment addPayment(@PathVariable int bookingid) throws Exception;
+	public ResponseEntity<Payment> addPayment(@PathVariable int bookingid) throws Exception;
 
 	@GetMapping("/Payment/getallpayment")
-	public List<Payment> getallpayments();
+	public ResponseEntity<List<Payment>> getallpayments();
 
 	@GetMapping("/Payment/getpaymentbybookingid/{bookingid}")
-	public Payment getpaymentbybookingid(@PathVariable int bookingid);
+	public ResponseEntity<Payment> getpaymentbybookingid(@PathVariable int bookingid);
 
 	@GetMapping("/Payment/getpaymentbypaymentid/{paymentid}")
-	public Payment getpaymentbypaymentid(@PathVariable long paymentid);
+	public ResponseEntity<Payment> getpaymentbypaymentid(@PathVariable long paymentid);
 
 	@GetMapping("/Payment/paymentCancel/{paymentid}")
-	public String paymentCancel(@PathVariable long paymentid);
+	public ResponseEntity<String> paymentCancel(@PathVariable long paymentid);
 }
