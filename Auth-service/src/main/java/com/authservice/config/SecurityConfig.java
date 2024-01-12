@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,8 +16,6 @@ import com.authservice.jwt.TokenFilter;
 import com.authservice.service.UserDetailsServiceImpl;
 
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
 	@Autowired
@@ -46,8 +42,7 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain doFilter(HttpSecurity http) throws Exception {
 		return http.csrf().disable().exceptionHandling().authenticationEntryPoint(entryPoint).and()
-				.authorizeHttpRequests().requestMatchers("/Main/User/adduser").permitAll()
-				.requestMatchers("/registration/authorization/**").authenticated().and().sessionManagement()
+				.authorizeHttpRequests().requestMatchers("/Main/**").permitAll().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class).build();
 	}
